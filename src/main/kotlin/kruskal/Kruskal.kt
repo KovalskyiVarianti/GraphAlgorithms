@@ -29,7 +29,7 @@ private fun getVertex(vertex: Int, parent: IntArray): Int {
 }
 
 fun main() {
-    val graph = readTestGraph("src/cpp.main/kotlin/kruskal/")
+    val graph = readTestGraph("src/main/kotlin/kruskal/")
     val result = graph.kruskal()
     println("Min spanning tree (Kruskal algorithm)")
     result.forEach { edge ->

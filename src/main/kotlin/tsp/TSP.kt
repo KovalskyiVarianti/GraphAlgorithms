@@ -1,3 +1,8 @@
+package tsp
+
+import Graph
+import readTestGraph
+
 private data class TspResult(val path: List<Int>, val totalCost: Int)
 
 private fun List<Int>.secondMin() = sorted().getOrNull(1) ?: Int.MAX_VALUE
@@ -49,27 +54,10 @@ private fun Graph.tsp(): TspResult {
 }
 
 fun main() {
-    val result = listOf(
-        listOf(0, 10, 15, 20),
-        listOf(10, 0, 35, 25),
-        listOf(15, 35, 0, 30),
-        listOf(20, 25, 30, 0)
-    ).toGraph().tsp()
+    val graph = readTestGraph("src/main/kotlin/tsp/")
+    val result = graph.tsp()
     println("Minimum cost : ${result.totalCost}")
-    println("Path Taken : ")
+    println("Path:")
     println(result.path.joinToString(separator = " -> "))
 }
-
-fun List<List<Int>>.toGraph() = Graph(
-    mapIndexed { source, row ->
-        val edges = mutableListOf<Edge>()
-        row.forEachIndexed { destination, weight ->
-            if (weight > 0) {
-                edges.add(Edge(source, destination, weight))
-            }
-        }
-        Vertex(source, edges)
-    },
-    this
-)
 

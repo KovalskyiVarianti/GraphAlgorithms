@@ -1,7 +1,14 @@
+import java.io.File
+import java.io.FileNotFoundException
 import java.util.*
 
 fun readTestGraph(path: String) : Graph {
-    print("Put test file name [1. 2 or 3]: ")
+    val files = File(path).listFiles()
+        ?.filter { it.extension == "txt" }
+        ?.joinToString(prefix = "[", postfix = "]") { it.name }
+        ?: throw FileNotFoundException("There is no test data!")
+
+    print("Put test file name without extension $files: ")
     val fileName = Scanner(System.`in`).nextLine()
     return readGraph("$path$fileName.txt").also {graph ->
         println("Graph")
