@@ -2,8 +2,7 @@ package kruskal
 
 import Edge
 import Graph
-import readGraph
-import java.util.Scanner
+import readTestGraph
 
 private fun Graph.kruskal(): List<Edge> {
     val edgesByWeight = vertices.flatMap { it.edges }.sortedBy { it.weight }
@@ -30,22 +29,8 @@ private fun getVertex(vertex: Int, parent: IntArray): Int {
 }
 
 fun main() {
-    print("Put test file name [1. 2 or 3]: ")
-    val fileName = Scanner(System.`in`).nextLine()
-    val graph = readGraph("src/main/kotlin/kruskal/$fileName.txt")
-    println("Graph")
-    println("Adj matrix:")
-    println(graph.adjMatrix.joinToString("\n"))
-    println("----------------------------------------------")
-    println(
-        graph.vertices.joinToString("\n") { vertex ->
-            "Vertex ${vertex.number + 1} edges: ${vertex.edges.joinToString(" ") { 
-                "[${it.source + 1}--(${it.weight})-->${it.destination + 1}]" }
-            }"
-        }
-    )
+    val graph = readTestGraph("src/cpp.main/kotlin/kruskal/")
     val result = graph.kruskal()
-    println("----------------------------------------------")
     println("Min spanning tree (Kruskal algorithm)")
     result.forEach { edge ->
         println("[${edge.source + 1}--(${edge.weight})-->${edge.destination + 1}]")
