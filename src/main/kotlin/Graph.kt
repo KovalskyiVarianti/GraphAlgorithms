@@ -8,7 +8,7 @@ fun readGraph(filePath: String): Graph {
     val file = File(filePath).also { println(it.absolutePath) }
     val lines = file.readLines()
     val adjMatrix = lines.map { line ->
-        line.split(",").mapNotNull { it.trim().toIntOrNull() }
+        line.split(",", " ").mapNotNull { it.trim().toIntOrNull() }
     }
     val vertices = adjMatrix.mapIndexed { source, row ->
         val edges = mutableListOf<Edge>()
