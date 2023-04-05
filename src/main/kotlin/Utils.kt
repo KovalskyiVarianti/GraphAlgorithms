@@ -2,6 +2,8 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.util.*
 
+const val DIVIDER = "----------------------------------------------"
+
 fun readTestGraph(path: String) : Graph {
     val files = File(path).listFiles()
         ?.filter { it.extension == "txt" }
@@ -14,7 +16,7 @@ fun readTestGraph(path: String) : Graph {
         println("Graph")
         println("Adj matrix:")
         println(graph.adjMatrix.joinToString("\n"))
-        println("----------------------------------------------")
+        println(DIVIDER)
         println(
             graph.vertices.joinToString("\n") { vertex ->
                 "Vertex ${vertex.number + 1} edges: ${vertex.edges.joinToString(" ") {
@@ -22,6 +24,6 @@ fun readTestGraph(path: String) : Graph {
                 }"
             }
         )
-        println("----------------------------------------------")
+        println(DIVIDER)
     }
 }
