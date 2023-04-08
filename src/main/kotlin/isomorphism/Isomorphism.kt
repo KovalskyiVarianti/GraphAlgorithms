@@ -2,7 +2,7 @@ package isomorphism
 
 import DIVIDER
 import Graph
-import readGraph
+import readTestGraph
 
 private infix fun Graph.isomorphic(other: Graph): Boolean {
     if (vertices.count() != other.vertices.count()) return false
@@ -21,8 +21,8 @@ private infix fun Graph.isomorphic(other: Graph): Boolean {
 
 
 fun main() {
-    val firstGraph = readGraph("src/main/kotlin/cpp/1.txt")
-    val secondGraph = readGraph("src/main/kotlin/cpp/2.txt")
+    val firstGraph = readTestGraph("src/main/kotlin/isomorphism/")
+    val secondGraph = readTestGraph("src/main/kotlin/isomorphism/")
     println("First graph:")
     println(firstGraph.adjMatrix.joinToString("\n"))
     println(DIVIDER)
